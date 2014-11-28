@@ -12,5 +12,6 @@
  * @link     https://rudloff.pro/
  */
 header('Content-type: image/png');
+//It might be better to use cURL here
 readfile('http://0.gravatar.com/avatar/'.$_GET['query']);
 ?>
