@@ -13,7 +13,7 @@
  */
 header('Content-type: image/png');
 $ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, 'http://0.gravatar.com/avatar/'.$_GET['query']);
+curl_setopt($ch, CURLOPT_URL, 'https://secure.gravatar.com/avatar/'.$_GET['query']);
 curl_exec($ch);
 curl_close($ch);
 ?>

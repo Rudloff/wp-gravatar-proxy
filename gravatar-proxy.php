@@ -31,12 +31,12 @@ Author URI: https://rudloff.pro/
 function replaceAvatar($avatar)
 {
     preg_match(
-        '#http://0.gravatar.com/avatar/([\w+]?[\?[\w|=]+]?)#',
+        '#(https://secure|http://0).gravatar.com/avatar/([\w+]?[\?[\w|=]+]?)#',
         $avatar, $matches
     );
     return str_replace(
         $matches[0], plugin_dir_url(__FILE__).
-        'proxy.php?query='.urlencode($matches[1]), $avatar
+        'proxy.php?query='.urlencode($matches[2]), $avatar
     );
 }
 
