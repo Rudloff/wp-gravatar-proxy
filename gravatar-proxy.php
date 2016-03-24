@@ -39,7 +39,5 @@ function replaceAvatar($avatar) {
         'proxy.php?query='.urlencode($matches['2']), $avatar
     );
 }
-if(!is_admin()) {
-    add_filter('get_avatar', 'replaceAvatar', 10, 5);
-}
+add_filter('get_avatar', 'replaceAvatar', 10, 5);
 ?>
