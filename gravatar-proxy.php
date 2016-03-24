@@ -29,18 +29,17 @@ Author URI: https://rudloff.pro/
  * 
  * @return string Avatar img tag
  * */
-function replaceAvatar($avatar)
-{
+function replaceAvatar($avatar) {
     preg_match(
-        '#(https://secure|http://0).gravatar.com/avatar/([\w+]?[\?[\w|=]+]?)#',
+        '#(https?:\/\/secure|https?:\/\/www|https?:\/\/0|https?:\/\/1|https?:\/\/2)\.gravatar\.com\/avatar\/([\w+]?[\?[\w|=]+]?)#',
         $avatar, $matches
     );
     return str_replace(
-        $matches[0], plugin_dir_url(__FILE__).
-        'proxy.php?query='.urlencode($matches[2]), $avatar
+        $matches['0'], plugin_dir_url(__FILE__).
+        'proxy.php?query='.urlencode($matches['2']), $avatar
     );
 }
-
-
-add_filter('get_avatar', 'replaceAvatar', 10, 5);
+if(!is_admin()) {
+    add_filter('get_avatar', 'replaceAvatar', 10, 5);
+}
 ?>
