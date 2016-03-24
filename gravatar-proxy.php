@@ -2,9 +2,9 @@
 /**
  * Gravatar Proxy
  * Base plugin file
- * 
+ *
  * PHP version 5.4
- * 
+ *
  * @category Plugin
  * @package  Gravatar_Proxy
  * @author   Pierre Rudloff <contact@rudloff.pro>
@@ -24,23 +24,25 @@ Author URI: https://rudloff.pro/
 
 /**
  * Replace Gravatar URL with proxy URL
- * 
+ *
  * @param string $avatar Avatar img tag
- * 
+ *
  * @return string Avatar img tag
  * */
 function replaceAvatar($avatar)
 {
     preg_match(
         '#(https://secure|http://0).gravatar.com/avatar/([\w+]?[\?[\w|=]+]?)#',
-        $avatar, $matches
+        $avatar,
+        $matches
     );
     return str_replace(
-        $matches[0], plugin_dir_url(__FILE__).
-        'proxy.php?query='.urlencode($matches[2]), $avatar
+        $matches[0],
+        plugin_dir_url(__FILE__).
+            'proxy.php?query='.urlencode($matches[2]),
+        $avatar
     );
 }
 
 
 add_filter('get_avatar', 'replaceAvatar', 10, 5);
-?>
