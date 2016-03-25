@@ -35,8 +35,8 @@ function replaceAvatar($avatar) {
         $avatar, $matches
     );
     return str_replace(
-        $matches['0'], plugin_dir_url(__FILE__).
-        'proxy.php?query='.urlencode($matches['2']), $avatar
+        $matches[0], plugin_dir_url(__FILE__).
+        'proxy.php?query='.urlencode($matches[2]), $avatar
     );
 }
 add_filter('get_avatar', 'replaceAvatar', 10, 5);
