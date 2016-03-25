@@ -39,5 +39,12 @@ function replaceAvatar($avatar) {
         'proxy.php?query='.urlencode($matches[2]), $avatar
     );
 }
-add_filter('get_avatar', 'replaceAvatar', 10, 5);
+/**
+ * Don't run on the admin options-discussion page
+ */
+preg_match('/[\w\-]+.php/', $_SERVER["SCRIPT_FILENAME"], $match);
+$curpage = array_shift($match);
+if($curpage !== 'options-discussion.php') {
+    add_filter('get_avatar', 'replaceAvatar', 10, 5);
+}
 ?>
