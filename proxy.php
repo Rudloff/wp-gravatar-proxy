@@ -19,7 +19,8 @@ if(!file_exists( $cacheavatarpath )) {
     umask($oldmask);
 }
 $cacheavatarlink = $cacheavatarpath . "/" . $_GET['query'];
-if(!file_exists($cacheavatarlink)) {
+$filelastmodified = @filemtime($cacheavatarlink);
+if(!file_exists($cacheavatarlink) || (file_exists($cacheavatarlink) && (time() - $filelastmodified) > 2592000 )) {  // 2592000 = 30 days
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, 'https://secure.gravatar.com/avatar/'.$_GET['query']);
     curl_setopt($ch, CURLOPT_HEADER, 0);
