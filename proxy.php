@@ -20,4 +20,3 @@ $cache->cache_path = __DIR__.'/../../cache/wp-gravatar-proxy/';
 
 header('Content-type: image/png');
 echo $cache->get_data($_GET['query'], 'https://secure.gravatar.com/avatar/'.$_GET['query']);
-?>

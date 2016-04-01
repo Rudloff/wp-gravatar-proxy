@@ -29,9 +29,11 @@ Author URI: https://rudloff.pro/
  *
  * @return string Avatar img tag
  * */
-function replaceAvatar($avatar) {
+function replaceAvatar($avatar)
+{
     preg_match(
-        '#(https?:\/\/secure|https?:\/\/www|https?:\/\/0|https?:\/\/1|https?:\/\/2)\.gravatar\.com\/avatar\/([\w+]?[\?[\w|=]+]?)#',
+        '#(https?:\/\/secure|https?:\/\/www|https?:\/\/0|https?:\/\/1|https?:\/\/2)\.gravatar\.com\/avatar\/'.
+        '([\w+]?[\?[\w|=]+]?)#',
         $avatar,
         $matches
     );
@@ -48,7 +50,6 @@ function replaceAvatar($avatar) {
  */
 preg_match('/[\w\-]+.php/', $_SERVER["SCRIPT_FILENAME"], $match);
 $curpage = array_shift($match);
-if($curpage !== 'options-discussion.php') {
+if ($curpage !== 'options-discussion.php') {
     add_filter('get_avatar', 'replaceAvatar', 10, 5);
 }
-?>
