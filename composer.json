@@ -1,0 +1,13 @@
+{
+	"name": "rudloff/wp-gravatar-proxy",
+	"description": "WordPress plugin that replaces Gravatar URLs with a local proxy.",
+	"type": "wordpress-plugin",
+	"license": "GPL-3.0",
+	"authors": [{
+		"name": "Pierre Rudloff",
+		"email": "contact@rudloff.pro"
+	}],
+	"require": {
+		"gilbitron/php-simplecache": "~1.4.1"
+	}
+}

@@ -11,26 +11,13 @@
  * @license  GPL http://www.gnu.org/licenses/gpl.html
  * @link     https://rudloff.pro/
  */
-$path =  realpath(dirname(__FILE__));
-$cacheavatarpath = str_replace("plugins", "cache", $path);
-if(!file_exists( $cacheavatarpath )) {
-    $oldmask = umask(0);
-    mkdir($cacheavatarpath, 0777, true);
-    umask($oldmask);
-}
-$cacheavatarlink = $cacheavatarpath . "/" . $_GET['query'];
-$filelastmodified = @filemtime($cacheavatarlink);
-if(!file_exists($cacheavatarlink) || (file_exists($cacheavatarlink) && (time() - $filelastmodified) > 2592000 )) {  // 2592000 = 30 days
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, 'https://secure.gravatar.com/avatar/'.$_GET['query']);
-    curl_setopt($ch, CURLOPT_HEADER, 0);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-    $out=curl_exec($ch);
-    $fp = fopen($cacheavatarlink, 'w');
-    fwrite($fp, $out);
-    fclose($fp);
-    curl_close($ch);
-}
+
+require_once __DIR__.'/vendor/autoload.php';
+
+$cache = new Gilbitron\Util\SimpleCache();
+
+$cache->cache_path = __DIR__.'/../../cache/wp-gravatar-proxy/';
+
 header('Content-type: image/png');
-readfile($cacheavatarlink);
+echo $cache->get_data($_GET['query'], 'https://secure.gravatar.com/avatar/'.$_GET['query']);
 ?>
