@@ -3,7 +3,7 @@ Contributors: Rudloff
 Tags: avatar, privacy
 Requires at least: 4.0.1
 Tested up to: 4.0.1
-Stable tag: 0.1
+Stable tag: 0.1.1
 License: GPL
 License URI: http://www.gnu.org/licenses/gpl.html
 
@@ -21,6 +21,9 @@ It helps mitigating Gravatar privacy risks by hiding your users IP addresses to 
 
 == Changelog ==
 
+= 0.1.1 =
+* Cache avatars
+* Don't run plugin in back office
+
 = 0.1 =
 * Initial release
-
